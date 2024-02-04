@@ -13,15 +13,14 @@
       <img src="imagens/logo.png" alt="Logo Navi">
     </section>
     <section class="section2">
-			<h2>Bem-vindo(a) ao Navi</h2>
-      <form class="login-form">
+	  <h2>Bem-vindo(a) ao Navi</h2>
+      <form class="login-form" name="frmLogin" action="login">
         <label for="email">Email</label>
-        <input type="email" id="email" placeholder="ex: antonio@gmail.com">
+        <input type="email" name="email" placeholder="ex: antonio@gmail.com">
         <label for="senha">Senha</label>
-        <input type="password" id="senha"
-        >
+        <input type="password" name="senha">
         <a href="">Recuperar senha</a>
-        <p>Não possui conta? <a href="paginas/cadastro.html">Cadastre-se aqui</a></p>
+        <p>Não possui conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
         <button onclick="validarLogin()">Entrar</button>
       </form>
     </section>

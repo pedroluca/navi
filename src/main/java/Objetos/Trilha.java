@@ -1,4 +1,4 @@
-package Objetos;
+package objetos;
 
 public class Trilha {
   private int id;

@@ -10,47 +10,47 @@
 	 let confirmaSenha = frmCadastro.confirmaSenha.value
 	 let generoFeminino = frmCadastro.genero[0].checked;
 	 let generoMasculino = frmCadastro.genero[1].checked;
-	 let username = frmCadastro.username.value
+	 let usuario = frmCadastro.usuario.value
 	 
 	 if(nome === ""){
 		 alert("Preencha o campo Nome")
 		 frmCadastro.nome.focus()
 		 return false
-	 } else if(username === ""){
+	 } else if(usuario === ""){
 		 alert("Preencha o campo Username")
-		 frmCadastro.username.focus()
+		 frmCadastro.usuario.focus()
 		 return false
 	 } else if(telefone === ""){
-		  alert("Preencha o campo Telefone")
+		 alert("Preencha o campo Telefone")
 		 frmCadastro.telefone.focus()
 		 return false
 	 } else if(email === ""){
-		  alert("Preencha o campo Email")
+	  	 alert("Preencha o campo Email")
 		 frmCadastro.email.focus()
 		 return false
 	 } else if(senha === ""){
-		  alert("Preencha o campo Senha")
+		 alert("Preencha o campo Senha")
 		 frmCadastro.senha.focus()
 		 return false
 	 } else if(confirmaSenha === ""){
-		  alert("Preencha o campo Confirme sua Senha")
+		 alert("Preencha o campo Confirme sua Senha")
 		 frmCadastro.confirmaSenha.focus()
 		 return false
 	 } else if(!generoFeminino && !generoMasculino) {
-        alert("Selecione o seu gênero");
-        return false;
-	 }  else{
+         alert("Selecione o seu gênero");
+         return false;
+	 } else{
 		 document.forms["frmCadastro"].submit()
 	 }
  }
  
  function validarLogin(){
-    let usuario = frmLogin.usuario.value;
+    let email = frmLogin.email.value;
     let senha = frmLogin.senha.value;
     
-    if(usuario === ""){
-        alert("Preencha o campo usuário");
-        frmLogin.usuario.focus();
+    if(email === ""){
+        alert("Preencha o campo email");
+        frmLogin.email.focus();
         return false;
     } else if(senha === ""){
         alert("Preencha o campo Senha");
@@ -58,5 +58,5 @@
         return false;
     } else{
 		document.forms["frmLogin"].submit()
-		}
+	}
 }

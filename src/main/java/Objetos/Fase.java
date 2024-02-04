@@ -1,4 +1,4 @@
-package Objetos;
+package objetos;
 
 public class Fase {
   private int xpNecessaria;

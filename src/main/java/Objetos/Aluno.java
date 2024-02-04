@@ -1,4 +1,4 @@
-package Objetos;
+package objetos;
 
 public class Aluno extends Usuario {
   private String nomeResponsavel;

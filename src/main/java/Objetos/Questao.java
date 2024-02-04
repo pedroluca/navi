@@ -1,4 +1,4 @@
-package Objetos;
+package objetos;
 
 public class Questao {
   private int id;

@@ -27,7 +27,7 @@ public class DAO {
 	
 	// Cadastro
 		public void inserirUsuario(Aluno aluno) {
-			String sql = "INSERT INTO usuario(nome, email, username, telefone, sexo, senha) VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO usuario_trilha (nome, email, username, telefone, sexo, senha, nome_do_responsavel) VALUES (?,?,?,?,?,?,?)";
 			
 			try {
 				Connection con = conectar();
@@ -39,6 +39,7 @@ public class DAO {
 				pstm.setString(4, aluno.getTelefone());
 				pstm.setString(5, String.valueOf(aluno.getSexo()));
 				pstm.setString(6, aluno.getSenha());
+				pstm.setString(7, aluno.getNomeResponsavel());
 				
 				pstm.execute();
 				con.close();
@@ -49,13 +50,13 @@ public class DAO {
 		
 		// Login - validar usuário
 		public boolean validarUsuario(Aluno aluno) {
-			String sql = "Select * From usuario WHERE username=? AND senha=?";
+			String sql = "Select * From usuario_trilha WHERE email=? AND senha=?";
 			
 			try {
 				Connection con = conectar();
 				PreparedStatement pstm = con.prepareStatement(sql);
 				
-				pstm.setString(1, aluno.getUsername());
+				pstm.setString(1, aluno.getEmail());
 				pstm.setString(2, aluno.getSenha());
 				
 				ResultSet rs = pstm.executeQuery();

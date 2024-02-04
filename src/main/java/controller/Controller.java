@@ -6,8 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import Objetos.Aluno;
+import objetos.Aluno;
 import model.DAO;
 
 @WebServlet(urlPatterns = {"/controller","/home", "/login", "/insert"})
@@ -22,11 +21,10 @@ public class Controller extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String action = request.getServletPath();
 		System.out.println(action);
 		if(action.equals("/home")) {
-			
+			response.sendRedirect("home.html");
 		} else if(action.equals("/insert")) {
 			novoUsuario(request, response);
 			
@@ -38,32 +36,29 @@ public class Controller extends HttpServlet {
 	}
 	
 	// fazer Login
-	protected void login(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
-	    String usuario = request.getParameter("usuario");
+	protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    String email = request.getParameter("email");
 	    String senha = request.getParameter("senha");
 	    
-	    if (usuario != null && senha != null) {
+	    if (email != null && senha != null) {
 	        Aluno aluno = new Aluno();
-	        aluno.setUsername(usuario);
+	        aluno.setEmail(email);
 	        aluno.setSenha(senha);
 	        
 	        if (dao.validarUsuario(aluno)) {
-	        	System.out.println("Login Realizado com Sucesso!!!");
-	        	response.sendRedirect("index.html");
+	        	System.out.println("Login Realizado com Sucesso!!!"); //tirar depois
+		        response.sendRedirect("home.html");
 	        } else {
-	        	System.out.println("Login Falhou!!!");
-	            response.sendRedirect("login.html");
+	        	System.out.println("Login Falhou!!!"); //tirar depois
+		        response.sendRedirect("index.html");
 	        }
 	    }
 	}
 
 	// cadastrar usuario
-	protected void novoUsuario(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
+	protected void novoUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		aluno.setNome(request.getParameter("nome"));
-		aluno.setUsername(request.getParameter("username"));
+		aluno.setUsername(request.getParameter("usuario"));
 		aluno.setTelefone(request.getParameter("telefone"));
 		aluno.setEmail(request.getParameter("email"));
 		aluno.setSenha(request.getParameter("senha"));

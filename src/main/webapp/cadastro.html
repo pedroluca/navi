@@ -3,30 +3,30 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="../imagens/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="imagens/logo.png">
     <title>Navi | cadastro</title>
   </head>
 	<body class="pagina-cadastro">
 		<section class="section1">
 			<h1>Navi</h1>
-      <img src="../imagens/logo.png" alt="Logo Navi">
+      <img src="imagens/logo.png" alt="Logo Navi">
 		</section>
 		<section class="section2">
 			<h2>Bem-vindo(a) ao Navi</h2>
 			<form class="cadastro-form" name="frmCadastro" action="insert">
 				<label for="nome">Nome</label>
-				<input type="text" name="nome"></td>
-				<label for="username">Usuário</label>
-				<input type="text" name="username"></td>
+				<input type="text" name="nome">
+				<label for="usuario">Usuário</label>
+				<input type="text" name="usuario">
 				<label for="telefone">Telefone</label>
-				<input type="text" name="telefone"></td>
+				<input type="text" name="telefone">
 				<label for="email">Email</label>
-				<input type="text" name="email"></td>
+				<input type="text" name="email">
 				<div class="area-senha">
 					<span>
 						<label for="senha">Senha</label>
-            <input type="password" name="senha"></td>
+            <input type="password" name="senha">
 					</span>
 					<span>
             <label for="confirmarSenha">Confirmar Senha</label>
@@ -39,10 +39,10 @@
 					<input id="masculino" type="radio" name="genero" value="M">
 					<label for="masculino">Masculino</label> 
 				</div>
-				<p>Já possui conta? <a href="../">Faça login</a></p>
+				<p>Já possui conta? <a href="index.html">Faça login</a></p>
 				<button onclick="validarCadastro()">Cadastrar</button>
 			</form>
 		</section>
-		<script src="../js/app.js"></script>
+		<script src="js/app.js"></script>
 	</body>
 </html>

@@ -1,4 +1,4 @@
-package Objetos;
+package objetos;
 
 public class Alternativa {
   private int id;
