@@ -27,7 +27,7 @@ public class DAO {
 	
 	// Cadastro
 		public void inserirUsuario(Aluno aluno) {
-			String sql = "INSERT INTO usuario_trilha (nome, email, username, telefone, sexo, senha, nome_do_responsavel) VALUES (?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO usuario_trilha (nome, email, username, telefone, sexo, senha) VALUES (?,?,?,?,?,?)";
 			
 			try {
 				Connection con = conectar();
@@ -39,7 +39,6 @@ public class DAO {
 				pstm.setString(4, aluno.getTelefone());
 				pstm.setString(5, String.valueOf(aluno.getSexo()));
 				pstm.setString(6, aluno.getSenha());
-				pstm.setString(7, aluno.getNomeResponsavel());
 				
 				pstm.execute();
 				con.close();

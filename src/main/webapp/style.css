@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Frijole&display=swap');
 
 :root {
   font-size: 62.5%;
@@ -33,12 +33,14 @@ body {
   color: #fff;
 }
 
-.pagina-cadastro .section1 {
+.pagina-cadastro .section1,
+.pagina-home .section1 {
   background: var(--dark-blue-color);
   color: #fff;
 }
 
-.pagina-cadastro .section2 {
+.pagina-cadastro .section2,
+.pagina-home .section2 {
   background: #fff;
   color: var(--dark-blue-color);
 }
@@ -53,13 +55,17 @@ body {
   gap: 2rem;
 }
 
-.section1 h1 {
+.pagina-login .section1 .system-name,
+.pagina-cadastro .section1 .system-name{
   font-size: 10rem;
-  font-family: 'Black Ops One', system-ui;
   color: var(--dark-blue-color);
 }
 
-.pagina-cadastro .section1 h1 {
+.system-name {
+  font-family: 'Frijole', system-ui;
+}
+
+.pagina-cadastro .section1 .system-name {
   color: #fff;
 }
 
@@ -164,4 +170,85 @@ body {
 .section2 form button:hover {
   background: var(--light-blue-color);
   color: #fff;
+}
+
+.pagina-home .section1 {
+  width: 20%;
+  gap: 4rem;
+  justify-content: flex-start;
+}
+
+.pagina-home .section2 {
+  width: 80%;
+}
+
+.pagina-home .system-name {
+  font-size: 5rem;
+}
+
+.pagina-home .user-icon {
+  --icon-size: 15rem;
+  height: var(--icon-size);
+  width: var(--icon-size);
+  border-radius: 50%;
+}
+
+.pagina-home .user-info {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+}
+
+.pagina-home .user-name {
+  font-size: 2.5rem;
+}
+
+.pagina-home .user-username {
+  font-size: 1.6rem;
+}
+
+.pagina-home .user-xp {
+  margin: -1.5rem 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  width: 55%;
+  border: 1px solid #C121E1;
+  border-radius: 50px;
+  padding: 1rem;
+  gap: 1rem;
+  background: #C121E1;
+  background: linear-gradient(135deg, #C121E1, #C9BBA6);
+}
+
+.pagina-home .user-options {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.pagina-home .user-options button {
+  padding: .5rem 1rem;
+  height: 5rem;
+  width: 15rem;
+  border-radius: 10px;
+  font-size: 1.8rem;
+  border: 1px solid var(--light-blue-color);
+  transition: ease-in-out .2s;
+  cursor: pointer;
+}
+
+.pagina-home .user-options button:hover {
+  background: var(--light-blue-color);
+  color: #fff;
+}
+
+.pagina-home .user-options button:focus {
+  outline: 1px solid var(--light-blue-color);
+}
+
+.pagina-home .copyrights {
+  color: #d3d3d3;
+  font-size: 1.4rem;
+  margin-top: 17rem;
 }

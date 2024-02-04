@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import objetos.Aluno;
 import model.DAO;
 
-@WebServlet(urlPatterns = {"/controller","/home", "/login", "/insert"})
+@WebServlet(urlPatterns = {"/controller", "/home", "/login", "/insert"})
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
