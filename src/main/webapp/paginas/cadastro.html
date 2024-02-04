@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../imagens/logo.png">
+    <title>Navi | cadastro</title>
+  </head>
+	<body class="pagina-cadastro">
+		<section class="section1">
+			<h1>Navi</h1>
+      <img src="../imagens/logo.png" alt="Logo Navi">
+		</section>
+		<section class="section2">
+			<h2>Bem-vindo(a) ao Navi</h2>
+			<form class="cadastro-form" name="frmCadastro" action="insert">
+				<label for="nome">Nome</label>
+				<input type="text" name="nome" placeholder="Nome"></td>
+				<label for="username">Usuário</label>
+				<input type="text" name="username" placeholder="Usuário"></td>
+				<label for="telefone">Telefone</label>
+				<input type="text" name="telefone" placeholder="Telefone"></td>
+				<label for="email">Email</label>
+				<input type="text" name="email" placeholder="Email"></td>
+				<div class="area-senha">
+					<span>
+						<label for="senha">Senha</label>
+            <input type="password" name="senha" placeholder="Senha"></td>
+					</span>
+					<span>
+            <label for="confirmarSenha">Confirmar Senha</label>
+            <input type="password" name="confirmarSenha" placeholder="Confirmar Senha">
+					</span>
+				</div>
+				<div class="area-sexo">
+					<input id="feminino" type="radio" name="genero" value="F">
+					<label for="feminino">Feminino</label> 
+					<input id="masculino" type="radio" name="genero" value="M">
+					<label for="masculino">Masculino</label> 
+				</div>
+				<p>Já possui conta? <a href="../">Faça login</a></p>
+				<button onclick="validarCadastro()">Cadastrar</button>
+			</form>
+		</section>
+		<script src="../js/app.js"></script>
+	</body>
+</html>
