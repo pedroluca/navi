@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import objetos.Aluno;
 import model.DAO;
 
@@ -20,40 +21,54 @@ public class Controller extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getServletPath();
-		System.out.println(action);
-		if(action.equals("/home")) {
-			response.sendRedirect("home.html");
-		} else if(action.equals("/insert")) {
-			novoUsuario(request, response);
-			
-		} else if(action.equals("/login")){
-			login(request, response);
-		} else {
-			response.sendRedirect("index.html");
-		}
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getServletPath();
+        System.out.println(action);
+        if(action.equals("/home")) {
+            HttpSession session = request.getSession(false);
+            if (session != null && session.getAttribute("loggedInUser") != null) {
+                response.sendRedirect("home.jsp");
+            } else {
+                response.sendRedirect("index.html");
+            }
+        } else if(action.equals("/insert")) {
+            novoUsuario(request, response);
+        } else if(action.equals("/login")){
+            login(request, response);
+        } else {
+            response.sendRedirect("index.html");
+        }
+    }
+
 	
 	// fazer Login
-	protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    String email = request.getParameter("email");
-	    String senha = request.getParameter("senha");
-	    
-	    if (email != null && senha != null) {
-	        Aluno aluno = new Aluno();
-	        aluno.setEmail(email);
-	        aluno.setSenha(senha);
-	        
-	        if (dao.validarUsuario(aluno)) {
-	        	System.out.println("Login Realizado com Sucesso!!!"); //tirar depois
-		        response.sendRedirect("home.html");
-	        } else {
-	        	System.out.println("Login Falhou!!!"); //tirar depois
-		        response.sendRedirect("index.html");
-	        }
-	    }
-	}
+ // fazer Login
+    protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        
+        if (email != null && senha != null) {
+            Aluno aluno = new Aluno();
+            aluno.setEmail(email);
+            aluno.setSenha(senha);
+            
+            Aluno foundAluno = dao.validarUsuario(aluno);
+            
+            if (foundAluno != null) {
+                System.out.println("Login Realizado com Sucesso!!!"); //tirar depois
+                HttpSession session = request.getSession();
+                session.setAttribute("loggedInUser", foundAluno);
+                response.sendRedirect("home.jsp");
+            } else {
+                System.out.println("Login Falhou!!!"); //tirar depois
+                response.sendRedirect("index.html");
+            }
+        }
+    }
+
+
+
+
 
 	// cadastrar usuario
 	protected void novoUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -39,7 +39,7 @@ public class DAO {
 				pstm.setString(4, aluno.getTelefone());
 				pstm.setString(5, String.valueOf(aluno.getSexo()));
 				pstm.setString(6, aluno.getSenha());
-				
+	
 				pstm.execute();
 				con.close();
 			} catch (Exception e) {
@@ -48,24 +48,37 @@ public class DAO {
 		}
 		
 		// Login - validar usuário
-		public boolean validarUsuario(Aluno aluno) {
-			String sql = "Select * From usuario_trilha WHERE email=? AND senha=?";
-			
-			try {
-				Connection con = conectar();
-				PreparedStatement pstm = con.prepareStatement(sql);
-				
-				pstm.setString(1, aluno.getEmail());
-				pstm.setString(2, aluno.getSenha());
-				
-				ResultSet rs = pstm.executeQuery();
-				
-				return rs.next(); // Retorna true se encontrar o usuário e senha fornecidos
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return false;
-			
+		// Login - validar usuário
+		public Aluno validarUsuario(Aluno aluno) {
+		    String sql = "SELECT * FROM usuario_trilha WHERE email=? AND senha=?";
+		    
+		    try {
+		        Connection con = conectar();
+		        PreparedStatement pstm = con.prepareStatement(sql);
+		        
+		        pstm.setString(1, aluno.getEmail());
+		        pstm.setString(2, aluno.getSenha());
+		        
+		        ResultSet rs = pstm.executeQuery();
+		        
+		        if (rs.next()) {
+		            Aluno foundAluno = new Aluno();
+		            foundAluno.setEmail(rs.getString("email"));
+		            foundAluno.setSenha(rs.getString("senha"));
+		            foundAluno.setNome(rs.getString("nome"));
+		            foundAluno.setUsername(rs.getString("username"));
+		            String sexoStr = rs.getString("sexo");
+		            foundAluno.setSexo(!sexoStr.isEmpty() ? sexoStr.charAt(0) : ' ');
+		            foundAluno.setTelefone(rs.getString("telefone"));
+		            foundAluno.setNomeResponsavel(rs.getString("nome_do_responsavel"));
+
+		            return foundAluno;
+		        }
+		        
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		    return null;
 		}
+
 }
