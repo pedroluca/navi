@@ -1,6 +1,7 @@
-package objetos;
+package model;
 
 public class Usuario {
+  private String id;
   private String username;
   private String nome;
   private String email;
@@ -10,13 +11,22 @@ public class Usuario {
 
   public Usuario () {};
   
-  public Usuario (String username, String nome, String email, String senha, String telefone, char sexo) {
+  public Usuario (String id, String username, String nome, String email, String senha, String telefone, char sexo) {
+	setId(id);
     setUsername(username);
     setNome(nome);
     setEmail(email);
     setSenha(senha);
     setTelefone(telefone);
     setSexo(sexo);
+  }
+  
+  public void setId(String id) {
+	  this.id = id;
+  }
+  
+  public String getId() {
+	  return id;
   }
 
   public void setUsername(String username) {

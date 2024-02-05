@@ -1,4 +1,4 @@
-package objetos;
+package model;
 
 public class FaseAvaliativa extends Fase {
   public FaseAvaliativa (int xpNecessaria, int xpAtual, String assunto, int id) {

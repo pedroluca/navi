@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import objetos.Aluno;
+import model.Aluno;
 import model.DAO;
 
-@WebServlet(urlPatterns = {"/controller", "/home", "/login", "/insert"})
+@WebServlet(urlPatterns = {"/controller", "/home", "/login", "/insert", "/logout"})
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -22,27 +22,18 @@ public class Controller extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getServletPath();
+    	String action = request.getServletPath();
         System.out.println(action);
         if(action.equals("/home")) {
             HttpSession session = request.getSession(false);
-            if (session != null && session.getAttribute("loggedInUser") != null) {
-                response.sendRedirect("home.jsp");
-            } else {
-                response.sendRedirect("index.html");
-            }
-        } else if(action.equals("/insert")) {
-            novoUsuario(request, response);
-        } else if(action.equals("/login")){
-            login(request, response);
-        } else {
-            response.sendRedirect("index.html");
-        }
+            if (session != null && session.getAttribute("loggedInUser") != null) response.sendRedirect("home.jsp");
+            else response.sendRedirect("index.html");
+        } else if(action.equals("/insert")) novoUsuario(request, response);
+        else if(action.equals("/login")) login(request, response);
+        else if(action.equals("/logout")) logout(request, response);
+        else response.sendRedirect("index.html");
     }
 
-	
-	// fazer Login
- // fazer Login
     protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
@@ -55,22 +46,15 @@ public class Controller extends HttpServlet {
             Aluno foundAluno = dao.validarUsuario(aluno);
             
             if (foundAluno != null) {
-                System.out.println("Login Realizado com Sucesso!!!"); //tirar depois
                 HttpSession session = request.getSession();
-                session.setAttribute("loggedInUser", foundAluno);
+                session.setAttribute("loggedInUser", foundAluno);                
                 response.sendRedirect("home.jsp");
             } else {
-                System.out.println("Login Falhou!!!"); //tirar depois
                 response.sendRedirect("index.html");
             }
         }
     }
-
-
-
-
-
-	// cadastrar usuario
+    
 	protected void novoUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		aluno.setNome(request.getParameter("nome"));
 		aluno.setUsername(request.getParameter("usuario"));
@@ -84,5 +68,14 @@ public class Controller extends HttpServlet {
 		dao.inserirUsuario(aluno);
 		
 		response.sendRedirect("index.html");
+	}
+	
+	protected void logout (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+		    session.invalidate();
+		    response.sendRedirect("index.html");
+		}
+
 	}
 }
