@@ -225,6 +225,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  align-items: center;
 }
 
 .pagina-home .user-options button {
@@ -247,8 +248,10 @@ body {
   outline: 1px solid var(--light-blue-color);
 }
 
-.pagina-home .copyrights {
-  color: #d3d3d3;
-  font-size: 1.4rem;
-  margin-top: 17rem;
+.pagina-home .user-options a.logout-button {
+  color: #ff0000;
+}
+
+.pagina-home .user-options a.logout-button:hover {
+  color: #ff4d4d;
 }
