@@ -1,3 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*" %>
+<%@ page import="model.Aluno" %>
+<%
+    HttpSession currentSession = request.getSession(false);
+    Aluno aluno = (Aluno) currentSession.getAttribute("loggedInUser");
+
+    if (aluno != null) {
+        response.sendRedirect("home.jsp");
+    } else {
+%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -24,10 +36,14 @@
           <i class="fa-solid fa-eye" id="togglePassword"></i>
         </div>
         <a href="">Recuperar senha</a>
-        <p>Não possui conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
+        <p>Não possui conta? <a href="cadastro.jsp">Cadastre-se aqui</a></p>
         <button onclick="validarLogin()">Entrar</button>
       </form>
     </section>
     <script src="./js/visualizadorSenha.js"></script>
   </body>
 </html>
+
+<%
+    }
+%>

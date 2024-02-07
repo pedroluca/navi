@@ -37,8 +37,8 @@ public class Usuario extends HttpServlet {
 		
 		if (userDAO.validarCadastro(aluno) == false && action.equals("/insert")) {
 			userDAO.inserirUsuario(aluno);
-			response.sendRedirect("index.html");
-		} else if (userDAO.validarCadastro(aluno) == true && action.equals("/insert")) response.sendRedirect("cadastro.html");
+			response.sendRedirect("index.jsp");
+		} else if (userDAO.validarCadastro(aluno) == true && action.equals("/insert")) response.sendRedirect("cadastro.jsp");
     	else if (userDAO.validarCadastro(aluno) == true && action.equals("/update")) {
     		aluno.setId(userDAO.buscarId(aluno));
     		userDAO.updateUsuario(aluno);

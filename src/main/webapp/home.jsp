@@ -6,7 +6,7 @@
     Aluno aluno = (Aluno) currentSession.getAttribute("loggedInUser");
 
     if (aluno == null) {
-        response.sendRedirect("index.html");
+        response.sendRedirect("index.jsp");
     } else {
 %>
 
@@ -33,7 +33,7 @@
       </span>
       <div class="user-options">
         <button onclick="window.location.href='perfil.jsp'">Perfil</button>
-        <button>Trilha</button>
+        <button onclick="window.location.href='trilha.jsp'">Trilha</button>
         <button onclick="window.location.href='tutorial.jsp'">Tutorial</button>
         <a href="logout" class="logout-button">Sair</a>
       </div>
@@ -46,5 +46,5 @@
 </html>
 
 <%
-    } // End of else block
+    }
 %>

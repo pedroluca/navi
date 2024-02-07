@@ -33,14 +33,21 @@ body {
   color: #fff;
 }
 
+.pagina-home .section2 {
+    background-image: url("../imagens/bg-home.svg");
+}
+
+.pagina-home .edit-perfil {
+	background-image: url("../imagens/bg-perfil.svg");
+}
+
 .pagina-cadastro .section1,
 .pagina-home .section1 {
   background: var(--dark-blue-color);
   color: #fff;
 }
 
-.pagina-cadastro .section2,
-.pagina-home .section2 {
+.pagina-cadastro .section2 {
   background: #fff;
   color: var(--dark-blue-color);
 }
@@ -239,14 +246,15 @@ body {
   width: 15rem;
   border-radius: 10px;
   font-size: 1.8rem;
-  border: 1px solid var(--light-blue-color);
+  border: 1px solid #1565c0;
   transition: ease-in-out .2s;
   cursor: pointer;
+  background: var(--light-blue-color);
+  color: #fff;
 }
 
 .pagina-home .user-options button:hover {
-  background: var(--light-blue-color);
-  color: #fff;
+  background: #1565c0;
 }
 
 .pagina-home .user-options button:focus {
@@ -309,4 +317,13 @@ body {
 
 .pass-view-cadastro #togglePassword {
   top: 32%;
+}
+
+.pagina-trilha {
+	background-image: url("../imagens/bg-trilha.svg");
+	display: flex;
+}
+
+.pagina-trilha .section1 {
+	width: 30%;
 }

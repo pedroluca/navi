@@ -6,7 +6,7 @@
     Aluno aluno = (Aluno) currentSession.getAttribute("loggedInUser");
 
     if (aluno == null) {
-        response.sendRedirect("index.html");
+        response.sendRedirect("index.jsp");
     } else {
 %>
 

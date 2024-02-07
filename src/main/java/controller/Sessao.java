@@ -41,7 +41,7 @@ public class Sessao extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("loggedInUser", foundAluno);                
                 response.sendRedirect("home.jsp");
-            } else response.sendRedirect("index.html");
+            } else response.sendRedirect("index.jsp");
         }
 	}
 	
@@ -49,7 +49,7 @@ public class Sessao extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 		    session.invalidate();
-		    response.sendRedirect("index.html");
+		    response.sendRedirect("index.jsp");
 		}
 	}
 		

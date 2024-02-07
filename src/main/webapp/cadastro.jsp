@@ -1,3 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*" %>
+<%@ page import="model.Aluno" %>
+<%
+    HttpSession currentSession = request.getSession(false);
+    Aluno aluno = (Aluno) currentSession.getAttribute("loggedInUser");
+
+    if (aluno != null) {
+        response.sendRedirect("home.jsp");
+    } else {
+%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -11,7 +23,7 @@
 	<body class="pagina-cadastro">
 		<section class="section1">
 			<h1 class="system-name">Navi</h1>
-      <img src="imagens/logo.png" alt="Logo Navi">
+      		<img src="imagens/logo.png" class="logo-l" alt="Logo Navi">
 		</section>
 		<section class="section2">
 			<h2>Bem-vindo(a) ao Navi</h2>
@@ -46,7 +58,7 @@
 					<input id="masculino" type="radio" name="genero" value="M">
 					<label for="masculino">Masculino</label> 
 				</div>
-				<p>Já possui conta? <a href="index.html">Faça login</a></p>
+				<p>Já possui conta? <a href="index.jsp">Faça login</a></p>
 				<button onclick="validarCadastro()">Cadastrar</button>
 			</form>
 		</section>
@@ -54,3 +66,7 @@
     	<script src="./js/visualizadorSenha.js"></script>
 	</body>
 </html>
+
+<%
+    } // End of else block
+%>

@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.*" %>
 <%@ page import="model.Aluno" %>
 <%
@@ -5,7 +6,7 @@
     Aluno aluno = (Aluno) currentSession.getAttribute("loggedInUser");
 
     if (aluno == null) {
-        response.sendRedirect("index.html");
+        response.sendRedirect("index.jsp");
     } else {  
 %>
 
