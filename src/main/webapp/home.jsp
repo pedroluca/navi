@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.*" %>
 <%@ page import="model.Aluno" %>
 <%
@@ -14,9 +15,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" type="image/x-icon" href="imagens/logo.png">
-    <title>Navi | p·gina principal</title>
+    <title>Navi | in√≠cio</title>
   </head>
   <body class="pagina-home">
     <section class="section1">
@@ -31,14 +32,15 @@
         <p>10000</p>
       </span>
       <div class="user-options">
-        <button>Perfil</button>
+        <button onclick="window.location.href='perfil.jsp'">Perfil</button>
         <button>Trilha</button>
-        <button>Tutorial</button>
+        <button onclick="window.location.href='tutorial.jsp'">Tutorial</button>
         <a href="logout" class="logout-button">Sair</a>
       </div>
     </section>
     <section class="section2">
-
+    	<img src="imagens/logo.png" class="logo-m">
+		<h1 class="system-name">Bem-vindo(a) ao Navi</h1>
     </section>
   </body>
 </html>
