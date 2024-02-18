@@ -6,6 +6,7 @@
     Aluno aluno = (Aluno) currentSession.getAttribute("loggedInUser");
 
     if (aluno == null) {
+    	currentSession.setAttribute("alerta", "<div id='mensagem' class='corpo-mensagem mensagem-erro'> Faça login primeiro! </div>");  
         response.sendRedirect("index.jsp");
     } else {  
 %>
@@ -40,7 +41,7 @@
     <section class="section2 edit-perfil">
       <div class="edit-perfil-container">
         <h2>Editar perfil</h2>
-        <form action="update">
+        <form action="update" method="post">
           <label for="nome">Nome:</label>
           <input type="text" id="nome" name="nome" value="<%= aluno.getNome() %>">
           <label for="email">E-mail:</label>
@@ -56,19 +57,42 @@
 			  <input id="masculino" type="radio" name="genero" value="M" <% if(aluno.getSexo() == 'M') %>checked <%; %>>
 			  <label for="masculino">Masculino</label> 
 		  </div>
-          <label for="senha">Senha:</label>          
+          <label for="senha">Senha atual:</label>          
           <div class="password-container">
             <input type="password" name="senha" id="senha" value="<%= aluno.getSenha() %>">
-            <i class="fa-solid fa-eye" id="togglePassword"></i>
+            <i class="fa-solid fa-eye togglePassword" id="togglePassword"></i>
+          </div>
+          <label for="nova-senha">Nova senha:</label>
+          <div class="password-container">
+            <input type="password" name="nova-senha" id="senha2">
+            <i class="fa-solid fa-eye togglePassword" id="togglePassword2"></i>
+          </div>
+          <label for="confirma-nova-senha">Confirme a nova senha:</label>  
+          <div class="password-container">
+            <input type="password" name="confirma-nova-senha" id="senha3">
+            <i class="fa-solid fa-eye togglePassword" id="togglePassword3"></i>
           </div>
           <button type="submit">Salvar</button>
         </form>
       </div>
     </section>
     <script src="./js/visualizadorSenha.js"></script>
+    <%
+    	String mensagem = (String) currentSession.getAttribute("alerta-perfil");
+    	if (mensagem != null) {
+	%>
+		<%= mensagem %>
+	<%
+    	}
+    %>
+    <script>
+	    setInterval(() => {
+	        document.getElementById('mensagem').classList.add('esconder-mensagem')
+	        <% currentSession.removeAttribute("alerta-perfil"); %>
+	    },2500)
+    </script>
   </body>
 </html>
-
 <%
-    } // End of else block
+    }
 %>

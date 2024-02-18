@@ -1,7 +1,7 @@
 package model;
 
 public class FaseAvaliativa extends Fase {
-  public FaseAvaliativa (int xpNecessaria, int xpAtual, String assunto, int id) {
+  public FaseAvaliativa (int xpNecessaria, int xpAtual, String assunto, String id) {
     super(xpNecessaria, xpAtual, assunto, id);
   }
 

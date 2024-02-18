@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import model.Aluno;
 
 public class UsuarioDAO {
@@ -55,6 +57,7 @@ public class UsuarioDAO {
 	            foundAluno.setTelefone(rs.getString("telefone"));
 	            foundAluno.setNomeResponsavel(rs.getString("nome_do_responsavel"));
 	            foundAluno.setId(rs.getString("id"));
+	            foundAluno.setIsAdm(rs.getBoolean("is_adm"));
 
 	            return foundAluno;
 	        }
@@ -82,7 +85,7 @@ public class UsuarioDAO {
 		return true;
 	}
 	
-	public void updateUsuario(Aluno aluno) {
+	public boolean updateUsuario(Aluno aluno) {
 		String sql = "UPDATE usuario_trilha SET nome = ?, email = ?, username = ?, telefone = ?, sexo = ?, senha = ? WHERE id = ?";
 		try {
 			Connection con = dao.conectar();
@@ -97,9 +100,11 @@ public class UsuarioDAO {
 			pstm.setString(7, aluno.getId());
 			pstm.execute();
 			con.close();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 	public String buscarId(Aluno aluno) {
@@ -113,7 +118,6 @@ public class UsuarioDAO {
 	        
 	        if (rs.next()) {
 	            String idRetornado = rs.getString("id");
-	            System.out.println("Pegou id: " + idRetornado);
 	            con.close();
 	            return idRetornado;
 	        }
@@ -124,4 +128,35 @@ public class UsuarioDAO {
 	    }
 	    return null;
 	}
+	
+	public ArrayList<Aluno> getAllAlunos() {
+		String sql = "SELECT id, nome, email, telefone, sexo FROM usuario_trilha";
+
+		try {
+			Connection con = dao.conectar();
+	        PreparedStatement statement = con.prepareStatement(sql);
+	        ResultSet resultSet = statement.executeQuery();
+
+	        ArrayList<Aluno> alunos = new ArrayList<>();
+
+	        while (resultSet.next()) {
+	            Aluno foundAluno = new Aluno();
+	            foundAluno.setId(resultSet.getString("id"));
+	            foundAluno.setNome(resultSet.getString("nome"));
+	            foundAluno.setEmail(resultSet.getString("email"));
+	            foundAluno.setTelefone(resultSet.getString("telefone"));
+	            String sexoStr = resultSet.getString("sexo");
+	            foundAluno.setSexo(!sexoStr.isEmpty() ? sexoStr.charAt(0) : ' ');
+
+	            alunos.add(foundAluno);
+	        }
+
+	        con.close();
+	        return alunos;
+		} catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+        return null;
+    }
 }

@@ -1,19 +1,19 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Questao {
-  private int id;
+  private String id;
   private String enunciado;
+  private ArrayList<Alternativa> alternativas;
 
-  public Questao (int id, String enunciado) {
-    setId(id);
-    setEnunciado(enunciado);
-  }
+  public Questao () {}
 
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
   
-  public int getId() {
+  public String getId() {
     return id;
   }
   
@@ -23,5 +23,17 @@ public class Questao {
   
   public String getEnunciado() {
     return enunciado;
+  }
+  
+  public void setAlternativas(ArrayList<Alternativa> alternativas) {
+	  this.alternativas = alternativas;
+  }
+  
+  public void addAlternativa(Alternativa alternativa) {
+	  this.alternativas.add(alternativa);
+  }
+  
+  public ArrayList<Alternativa> getAlternativas() {
+	  return alternativas;
   }
 }

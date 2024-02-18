@@ -7,8 +7,8 @@ public class Aluno extends Usuario {
 	super();
   }
   
-  public Aluno (String id, String username, String nome, String email, String senha, String telefone, char sexo, String nomeResponsavel) {
-    super(id, username, nome, email, senha, telefone, sexo);
+  public Aluno (String id, String username, String nome, String email, String senha, String telefone, char sexo, boolean is_adm, String nomeResponsavel) {
+    super(id, username, nome, email, senha, telefone, sexo, is_adm);
     setNomeResponsavel(nomeResponsavel);
   }
 

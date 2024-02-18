@@ -27,28 +27,28 @@
 		</section>
 		<section class="section2">
 			<h2>Bem-vindo(a) ao Navi</h2>
-			<form class="cadastro-form" name="frmCadastro" action="insert">
+			<form class="cadastro-form" method="post" action="insert">
 				<label for="nome">Nome</label>
-				<input type="text" name="nome">
+				<input type="text" name="nome" required>
 				<label for="username">Usuário</label>
-				<input type="text" name="username">
+				<input type="text" name="username" required>
 				<label for="telefone">Telefone</label>
 				<input type="text" name="telefone">
 				<label for="email">Email</label>
-				<input type="text" name="email">
+				<input type="text" name="email" required>
 				<div class="area-senha">
 					<span>
 						<label for="senha">Senha</label>
 						<div class="password-container pass-view-cadastro">
-							<input type="password" name="senha" id="senha">
-							<i class="fa-solid fa-eye" id="togglePassword"></i>
+							<input type="password" name="senha" id="senha" required>
+							<i class="fa-solid fa-eye togglePassword" id="togglePassword"></i>
 						</div>
 					</span>
 					<span>
             			<label for="confirmarSenha">Confirmar Senha</label>
 						<div class="password-container pass-view-cadastro">
-							<input type="password" name="confirmarSenha" id="senha">
-							<i class="fa-solid fa-eye" id="togglePassword"></i>
+							<input type="password" name="confirmarSenha" id="senha2" required>
+							<i class="fa-solid fa-eye togglePassword" id="togglePassword2"></i>
 						</div>
 					</span>
 				</div>
@@ -59,14 +59,27 @@
 					<label for="masculino">Masculino</label> 
 				</div>
 				<p>Já possui conta? <a href="index.jsp">Faça login</a></p>
-				<button onclick="validarCadastro()">Cadastrar</button>
+				<button type="submit">Cadastrar</button>
 			</form>
 		</section>
-		<script src="./js/app.js"></script>
-    	<script src="./js/visualizadorSenha.js"></script>
+	    <script src="./js/visualizadorSenha.js"></script>
+	    <%
+	    	String mensagem = (String) currentSession.getAttribute("alerta-cadastro");
+	    	if (mensagem != null) {
+		%>
+			<%= mensagem %>
+		<%
+	    	}
+	    %>
+	    <script>
+	    	setInterval(() => {
+	        	document.getElementById('mensagem').classList.add('esconder-mensagem')
+		        <% currentSession.removeAttribute("alerta-cadastro"); %>
+	    	},2500)
+	    </script>
 	</body>
 </html>
 
 <%
-    } // End of else block
+    }
 %>

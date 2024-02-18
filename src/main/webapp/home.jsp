@@ -6,7 +6,10 @@
     Aluno aluno = (Aluno) currentSession.getAttribute("loggedInUser");
 
     if (aluno == null) {
+    	currentSession.setAttribute("alerta", "<div id='mensagem' class='corpo-mensagem mensagem-erro'> Faça login primeiro! </div>");  
         response.sendRedirect("index.jsp");
+    } else if (aluno.getIsAdm()) {
+    	response.sendRedirect("admin.jsp");
     } else {
 %>
 
@@ -44,7 +47,6 @@
     </section>
   </body>
 </html>
-
 <%
     }
 %>
