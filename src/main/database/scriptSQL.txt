@@ -1,4 +1,4 @@
-/* Lógico_sistema_java: */
+/* scriptSQL: */
 CREATE DATABASE navi;
 USE navi;
 
@@ -52,8 +52,7 @@ ALTER TABLE Alternativa ADD CONSTRAINT FK_Alternativa_2
     FOREIGN KEY (id_questao)
     REFERENCES Questao (id);
     
--- Inserir questões sobre Verbos
-
+-- Questões sobre Verbo
 INSERT INTO Questao (assunto, enunciado) VALUES
 ('Verbo', 'Qual é a conjugação do verbo "cantar"?'),
 ('Verbo', 'Qual o modo verbal da frase "Eu canto"?'),
@@ -61,8 +60,6 @@ INSERT INTO Questao (assunto, enunciado) VALUES
 ('Verbo', 'Qual a pessoa verbal da frase "Nós comíamos"?'),
 ('Verbo', 'Qual a voz verbal da frase "A casa foi construída por mim"?'),
 ('Verbo', 'Qual o infinitivo pessoal do verbo "ler"?'),
-('Verbo', 'Qual o gerúndio do verbo "escrever"?'),
-('Verbo', 'Qual o particípio passado do verbo "falar"?'),
 ('Verbo', 'Qual a conjugação do verbo "sentir"?'),
 ('Verbo', 'Qual o modo verbal da frase "Se eu tivesse dinheiro"?'),
 ('Verbo', 'Qual o tempo verbal da frase "Eles já haviam terminado"?'),
@@ -71,8 +68,7 @@ INSERT INTO Questao (assunto, enunciado) VALUES
 ('Verbo', 'Qual o infinitivo impessoal do verbo "vir"?'),
 ('Verbo', 'Qual o particípio presente do verbo "abrir"?');
 
--- Inserir alternativas para questões sobre Verbos
-
+-- Alternativas para questões sobre Verbos
 INSERT INTO Alternativa (texto, is_correta, id_questao) VALUES
 ('1ª conjugação', TRUE, 1),
 ('2ª conjugação', FALSE, 1),
@@ -94,28 +90,28 @@ INSERT INTO Alternativa (texto, is_correta, id_questao) VALUES
 ('Passiva sintética', FALSE, 5),
 ('Ativa', FALSE, 5),
 ('Reflexiva', FALSE, 5),
-('Cantar', TRUE, 6),
-('Cantando', FALSE, 6),
-('Cantado', FALSE, 6),
-('Cantaríamos', FALSE, 6),
+('Ler', TRUE, 6),
+('Lendo', FALSE, 6),
+('Lido', FALSE, 6),
+('Leríamos', FALSE, 6),
 ('2ª conjugação', TRUE, 7),
 ('3ª conjugação', FALSE, 7),
 ('1ª conjugação', FALSE, 7),
 ('4ª conjugação', FALSE, 7),
-('Indicativo', FALSE, 8),
-('Subjuntivo', TRUE, 8),
-('Imperativo', FALSE, 8),
-('Infinitivo', FALSE, 8),
-('Pretérito Perfeito', TRUE, 9),
+('Pretérito Imperfeito do Indicativo', FALSE, 8),
+('Pretérito Imperfeito do Subjuntivo', TRUE, 8),
+('Futuro do Pretérito', FALSE, 8),
+('Presente do Indicativo', FALSE, 8),
+('Pretérito Perfeito', FALSE, 9),
 ('Futuro do Pretérito', FALSE, 9),
 ('Presente do Indicativo', FALSE, 9),
-('Pretérito Mais-que-Perfeito', FALSE, 9),
+('Pretérito Mais-que-Perfeito', TRUE, 9),
 ('2ª pessoa do singular', TRUE, 10),
 ('3ª pessoa do plural', FALSE, 10),
 ('1ª pessoa do singular', FALSE, 10),
 ('1ª pessoa do plural', FALSE, 10),
-('Passiva analítica', FALSE, 11),
-('Passiva sintética', TRUE, 11),
+('Passiva analítica', TRUE, 11),
+('Passiva sintética', FALSE, 11),
 ('Ativa', FALSE, 11),
 ('Reflexiva', FALSE, 11),
 ('Vir', TRUE, 12),
@@ -158,7 +154,6 @@ INSERT INTO Alternativa (texto, is_correta, id_questao) VALUES
 ('hoje', FALSE, 18),
 ('cedo', TRUE, 18);
 
-
 -- Questões sobre Substantivos
 INSERT INTO Questao (assunto, enunciado) VALUES
 ('Substantivo', 'Qual a classificação do substantivo "mesa" na frase "A mesa da cozinha está bagunçada"?'),
@@ -166,28 +161,29 @@ INSERT INTO Questao (assunto, enunciado) VALUES
 ('Substantivo', 'Qual o número do substantivo "livro" na frase "Comprei dois livros novos"?'),
 ('Substantivo', 'Qual o grau do substantivo "casa" na frase "Aquela casa é enorme"?'),
 ('Substantivo', 'Complete a frase com o substantivo adequado: "O menino comeu um pedaço de ______."');
+
 -- Alternativas para questões sobre Substantivos
 INSERT INTO Alternativa (texto, is_correta, id_questao) VALUES
-('Concreto', TRUE, 1),
-('Abstrato', FALSE, 1),
-('Primitivo', FALSE, 1),
-('Derivado', FALSE, 1),
-('Masculino', FALSE, 2),
-('Feminino', TRUE, 2),
-('Comum de dois gêneros', FALSE, 2),
-('Epiceno', FALSE, 2),
-('Singular', FALSE, 3),
-('Plural', TRUE, 3),
-('Coletivo', FALSE, 3),
-('Partitivo', FALSE, 3),
-('Normal', FALSE, 4),
-('Diminutivo', FALSE, 4),
-('Aumentativo', TRUE, 4),
-('Superlativo', FALSE, 4),
-('Bolo', TRUE, 5),
-('Beleza', FALSE, 5),
-('Coragem', FALSE, 5),
-('Felicidade', FALSE, 5);
+('Concreto', TRUE, 19),
+('Abstrato', FALSE, 19),
+('Primitivo', FALSE, 19),
+('Derivado', FALSE, 19),
+('Masculino', FALSE, 20),
+('Feminino', TRUE, 20),
+('Comum de dois gêneros', FALSE, 20),
+('Epiceno', FALSE, 20),
+('Singular', FALSE, 21),
+('Plural', TRUE, 21),
+('Coletivo', FALSE, 21),
+('Partitivo', FALSE, 21),
+('Normal', FALSE, 22),
+('Diminutivo', FALSE, 22),
+('Aumentativo', TRUE, 22),
+('Superlativo', FALSE, 22),
+('Bolo', TRUE, 23),
+('Beleza', FALSE, 23),
+('Coragem', FALSE, 23),
+('Felicidade', FALSE, 23);
 
 -- Questões sobre Adjetivos
 INSERT INTO Questao (assunto, enunciado) VALUES
@@ -198,26 +194,26 @@ INSERT INTO Questao (assunto, enunciado) VALUES
 ('Adjetivo', 'Qual a alternativa que apresenta apenas adjetivos primitivos?');
 -- Alternativas para questões sobre Adjetivos
 INSERT INTO Alternativa (texto, is_correta, id_questao) VALUES
-('Qualificativo', TRUE, 1),
-('Relacional', FALSE, 1),
-('Numeral', FALSE, 1),
-('Pronomial', FALSE, 1),
-('Superlativo absoluto analítico', TRUE, 2),
-('Superlativo absoluto sintético', FALSE, 2),
-('Comparativo de superioridade', FALSE, 2),
-('Comparativo de igualdade', FALSE, 2),
-('Adjunto adnominal', TRUE, 3),
-('Predicativo do sujeito', FALSE, 3),
-('Complemento nominal', FALSE, 3),
-('Agente da passiva', FALSE, 3),
-('inteligente', TRUE, 4),
-('bonito', FALSE, 4),
-('forte', FALSE, 4),
-('feliz', FALSE, 4),
-('bonito, grande, forte', FALSE, 5),
-('vermelho, amarelo, azul', FALSE, 5),
-('novo, velho, alto', FALSE, 5),
-('bom, mau, grande', TRUE, 5);
+('Qualificativo', TRUE, 24),
+('Relacional', FALSE, 24),
+('Numeral', FALSE, 24),
+('Pronomial', FALSE, 24),
+('Superlativo absoluto analítico', TRUE, 25),
+('Superlativo absoluto sintético', FALSE, 25),
+('Comparativo de superioridade', FALSE, 25),
+('Comparativo de igualdade', FALSE, 25),
+('Adjunto adnominal', TRUE, 26),
+('Predicativo do sujeito', FALSE, 26),
+('Complemento nominal', FALSE, 26),
+('Agente da passiva', FALSE, 26),
+('inteligente', TRUE, 27),
+('bonito', FALSE, 27),
+('forte', FALSE, 27),
+('feliz', FALSE, 27),
+('bonito, grande, forte', FALSE, 28),
+('vermelho, amarelo, azul', FALSE, 28),
+('novo, velho, alto', FALSE, 28),
+('bom, mau, grande', TRUE, 28);
 
 -- Questões sobre Pronomes
 INSERT INTO Questao (assunto, enunciado) VALUES
@@ -226,25 +222,26 @@ INSERT INTO Questao (assunto, enunciado) VALUES
 ('Pronome', 'Complete a frase com o pronome adequado: "______ está aqui."'),
 ('Pronome', 'Qual a alternativa que apresenta apenas pronomes pessoais retos?'),
 ('Pronome', 'Qual o pronome demonstrativo que indica proximidade em relação ao falante?');
+
 -- Alternativas para questões sobre Pronomes
 INSERT INTO Alternativa (texto, is_correta, id_questao) VALUES
-('Pessoal', TRUE, 1),
-('Possessivo', FALSE, 1),
-('Demonstrativo', FALSE, 1),
-('Indefinido', FALSE, 1),
-('Objeto direto', TRUE, 2),
-('Adjunto adnominal', FALSE, 2),
-('Predicativo do sujeito', FALSE, 2),
-('Complemento nominal', FALSE, 2),
-('Eu', TRUE, 3),
-('Tu', FALSE, 3),
-('Ele', FALSE, 3),
-('Nós', FALSE, 3),
-('mim, ti, si, ele, nós', FALSE, 4),
-('eu, tu, ele, nós, vós', TRUE, 4),
-('este, essa, estes, estas', FALSE, 4),
-('aquele, aquela, aqueles, aquelas', FALSE, 4),
-('este', TRUE, 5),
-('esse', FALSE, 5),
-('aquele', FALSE, 5),
-('aquilo', FALSE, 5);
+('Pessoal', TRUE, 29),
+('Possessivo', FALSE, 29),
+('Demonstrativo', FALSE, 29),
+('Indefinido', FALSE, 29),
+('Objeto direto', TRUE, 30),
+('Adjunto adnominal', FALSE, 30),
+('Predicativo do sujeito', FALSE, 30),
+('Complemento nominal', FALSE, 30),
+('Eu', FALSE, 31),
+('Tu', FALSE, 31),
+('Ele', TRUE, 31),
+('Nós', FALSE, 31),
+('mim, ti, si, ele, nós', FALSE, 32),
+('eu, tu, ele, nós, vós', TRUE, 32),
+('este, essa, estes, estas', FALSE, 32),
+('aquele, aquela, aqueles, aquelas', FALSE, 32),
+('este', TRUE, 33),
+('esse', FALSE, 33),
+('aquele', FALSE, 33),
+('aquilo', FALSE, 33);

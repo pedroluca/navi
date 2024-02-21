@@ -113,7 +113,7 @@ public class Jogo extends HttpServlet {
 		Aluno aluno = (Aluno) session.getAttribute("loggedInUser");
 		UsuarioDAO alunoDAO = new UsuarioDAO();
 		if (alunoDAO.avancarFase(aluno)) {
-			this.carregarFase(request, response);
+			response.sendRedirect("trilha.jsp");
 		}
 	}
 	
