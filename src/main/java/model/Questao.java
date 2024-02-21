@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Questao {
   private String id;
   private String enunciado;
+  private String assunto;
   private ArrayList<Alternativa> alternativas;
 
   public Questao () {}
@@ -25,6 +26,14 @@ public class Questao {
     return enunciado;
   }
   
+  public void setAssunto(String assunto) {
+	  this.assunto = assunto;
+  }
+  
+  public String getAssunto() {
+	  return assunto;
+  }
+  
   public void setAlternativas(ArrayList<Alternativa> alternativas) {
 	  this.alternativas = alternativas;
   }
@@ -35,5 +44,17 @@ public class Questao {
   
   public ArrayList<Alternativa> getAlternativas() {
 	  return alternativas;
+  }
+  
+  public Alternativa getAlternativaCorreta() {
+	  for (Alternativa opcao : alternativas) {
+		  if (opcao.getIsCorreta()) return opcao;
+	  }
+	  return null;
+  }
+  
+  public String getTextoAlternativaCorreta() {
+	  Alternativa temp = getAlternativaCorreta();
+	  return temp.getTexto();
   }
 }

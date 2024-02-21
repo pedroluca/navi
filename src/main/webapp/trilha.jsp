@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.*" %>
 <%@ page import="model.Aluno" %>
+<%@ page import="model.Fase" %>
+<%@ page import="modelDAO.FaseDAO" %>
 <%
-  HttpSession currentSession = request.getSession(false);
+  	HttpSession currentSession = request.getSession(false);
     Aluno aluno = (Aluno) currentSession.getAttribute("loggedInUser");
-
+    
     if (aluno == null) {
-        response.sendRedirect("index.jsp");
+    	response.sendRedirect("index.jsp");
     } else {  
+    	
+     FaseDAO faseDAO = new FaseDAO();
+     Fase fase = faseDAO.buscarFase(aluno.getIdFaseAtual());
 %>
 
 <!DOCTYPE html>
@@ -29,8 +34,8 @@
         <h3 class="user-username"><%= aluno.getUsername() %></h3>
       </span>
       <span class="user-xp">
-        <p>EXP:</p>
-        <p>10000</p>
+        <p>XP atual:</p>
+        <p><%= aluno.getXpAtual() %></p>
       </span>
       <div class="user-options">
       	<button onclick="window.location.href='home.jsp'">Voltar</button>
@@ -40,9 +45,10 @@
       <div class="edit-perfil-container trilha-container">
         <h1>Trilha</h1>
         <h2>Fase: <%= aluno.getIdFaseAtual() %></h2>
-        <h2>Assunto: </h2>
+        <h2>Assunto: <%= fase.getAssunto() %></h2>
+        <h2>XP Necessária: <%= fase.getXpNecessaria() %></h2>
         <div>
-          <h2>Planeta: </h2>
+          <h2></h2>
           <img src="./imagens/p-1.svg">
         </div>
       </div>

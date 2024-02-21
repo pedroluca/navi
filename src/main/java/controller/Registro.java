@@ -25,7 +25,8 @@ public class Registro extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	String action = request.getServletPath();
+    	request.setCharacterEncoding("UTF-8");
+    	String action = request.getServletPath();    	
     	aluno.setNome(request.getParameter("nome"));
 		aluno.setUsername(request.getParameter("username"));
 		aluno.setTelefone(request.getParameter("telefone"));
@@ -67,23 +68,14 @@ public class Registro extends HttpServlet {
     }
     
     protected void doUpdate(HttpServletRequest request, HttpServletResponse response, Aluno aluno) throws ServletException, IOException {
-    	if (!aluno.getSenha().equals(userDAO.validarUsuario(aluno).getSenha())) {
-            HttpSession session = request.getSession();
-            session.setAttribute("alerta-cadastro", "<div id='mensagem' class='corpo-mensagem mensagem-erro'> Erro! A senha informada está incorreta </div>"); 
-			response.sendRedirect("perfil.jsp");
-		} else if (!request.getParameter("nova-senha").equals(request.getParameter("confirma-nova-senha"))) {
-            HttpSession session = request.getSession();
-            session.setAttribute("alerta-cadastro", "<div id='mensagem' class='corpo-mensagem mensagem-erro'> Erro! Os campos nova senha e confirmar nova senha devem ser iguais </div>"); 
-			response.sendRedirect("perfil.jsp");
-		} else if (userDAO.validarCadastro(aluno) == true) {
-    		aluno.setId(userDAO.buscarId(aluno));
-    		if (userDAO.updateUsuario(aluno)) {
-    			HttpSession session = request.getSession();
-                session.setAttribute("loggedInUser", userDAO.validarUsuario(aluno));
-                session.setAttribute("alerta-perfil", "<div id='mensagem' class='corpo-mensagem mensagem-sucesso'> Dados atualizados com sucesso! </div>"); 
-    		}
+    	HttpSession session = request.getSession();
+    	Aluno alunoLogado = (Aluno) session.getAttribute("loggedInUser");
+    	aluno.setId(alunoLogado.getId());
+		if (userDAO.updateUsuario(aluno)) {
+            session.setAttribute("loggedInUser", userDAO.validarUsuario(aluno));
+            session.setAttribute("alerta-perfil", "<div id='mensagem' class='corpo-mensagem mensagem-sucesso'> Dados atualizados com sucesso! </div>"); 
             response.sendRedirect("perfil.jsp");
-    	} else {
+		} else {
     		response.sendRedirect("index.jsp");
     	}
     }

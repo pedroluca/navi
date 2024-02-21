@@ -14,7 +14,6 @@ import model.Aluno;
 @WebServlet(urlPatterns = {"/login", "/logout"})
 public class Sessao extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
     private UsuarioDAO userDAO = new UsuarioDAO();
 
     @Override

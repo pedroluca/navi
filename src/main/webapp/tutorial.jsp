@@ -30,8 +30,8 @@
         <h3 class="user-username"><%= aluno.getUsername() %></h3>
       </span>
       <span class="user-xp">
-        <p>EXP:</p>
-        <p>10000</p>
+        <p>XP atual:</p>
+        <p><%= aluno.getXpAtual() %></p>
       </span>
       <div class="user-options">
       	<button onclick="window.location.href='home.jsp'">Voltar</button>
@@ -42,9 +42,13 @@
 		<h1 class="system-name">Tutorial</h1>
 		<div class="carousel-container">
 	        <div class="carousel">
-	            <div class="carousel-item"><img src="./imagens/sla.jpg" alt="Imagem 1"></div>
-	            <div class="carousel-item"><img src="./imagens/profile-icon.jpg" alt="Imagem 2"></div>
-	            <div class="carousel-item"><img src="imagem3.jpg" alt="Imagem 3"></div>
+	            <div class="carousel-item"><img src="./imagens/tut-1.svg" alt="Imagem 1"></div>
+	            <div class="carousel-item"><img src="./imagens/tut-2.svg" alt="Imagem 2"></div>
+	            <div class="carousel-item"><img src="./imagens/tut-3.svg" alt="Imagem 3"></div>
+	            <div class="carousel-item"><img src="./imagens/tut-4.svg" alt="Imagem 4"></div>
+	            <div class="carousel-item"><img src="./imagens/tut-5.svg" alt="Imagem 5"></div>
+	            <div class="carousel-item"><img src="./imagens/tut-6.svg" alt="Imagem 6"></div>
+	            <div class="carousel-item"><img src="./imagens/tut-7.svg" alt="Imagem 7"></div>
 	        </div>
 	
 	        <button class="prev" onclick="prevSlide()">&#10094;</button>

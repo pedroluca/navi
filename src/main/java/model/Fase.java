@@ -1,19 +1,15 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Fase {
   private int xpNecessaria;
-  private int xpAtual;
   private String assunto;
   private String id;
-  private ArrayList<Questao> questoes;
   
-  public Fase () {}
+  public Fase () {
+  }
 
-  public Fase (int xpNecessaria, int xpAtual, String assunto, String id) {
+  public Fase (int xpNecessaria, String assunto, String id) {
     setXpNecessaria(xpNecessaria);
-    setXpAtual(xpAtual);
     setAssunto(assunto);
     setId(id);
   }
@@ -24,14 +20,6 @@ public class Fase {
   
   public int getXpNecessaria() {
     return xpNecessaria;
-  }
-  
-  public void setXpAtual(int xpAtual) {
-    this.xpAtual = xpAtual;
-  }
-  
-  public int getXpAtual() {
-    return xpAtual;
   }
   
   public void setAssunto(String assunto) {
@@ -48,13 +36,5 @@ public class Fase {
   
   public String getId() {
     return id;
-  }
-  
-  public void setQuestoes(ArrayList<Questao> questoes) {
-	  this.questoes = questoes;
-  }
-  
-  public ArrayList<Questao> getQuestoes() {
-	  return questoes;
   }
 }

@@ -31,8 +31,8 @@
         <h3 class="user-username"><%= aluno.getUsername() %></h3>
       </span>
       <span class="user-xp">
-        <p>EXP:</p>
-        <p>10000</p>
+        <p>XP atual:</p>
+        <p><%= aluno.getXpAtual() %></p>
       </span>
       <div class="user-options">
         <button onclick="window.location.href='perfil.jsp'">Perfil</button>

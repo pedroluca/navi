@@ -2,7 +2,7 @@
 <%@ page import="javax.servlet.http.*" %>
 <%@ page import="model.Aluno" %>
 <%
-  HttpSession currentSession = request.getSession(false);
+  	HttpSession currentSession = request.getSession(false);
     Aluno aluno = (Aluno) currentSession.getAttribute("loggedInUser");
 
     if (aluno == null) {
@@ -30,8 +30,8 @@
         <h3 class="user-username"><%= aluno.getUsername() %></h3>
       </span>
       <span class="user-xp">
-        <p>EXP:</p>
-        <p>10000</p>
+        <p>XP atual:</p>
+        <p><%= aluno.getXpAtual() %></p>
       </span>
       <div class="user-options">
       	<button onclick="window.location.href='home.jsp'">Voltar</button>
@@ -57,20 +57,10 @@
 			  <input id="masculino" type="radio" name="genero" value="M" <% if(aluno.getSexo() == 'M') %>checked <%; %>>
 			  <label for="masculino">Masculino</label> 
 		  </div>
-          <label for="senha">Senha atual:</label>          
+          <label for="senha">Senha</label>          
           <div class="password-container">
             <input type="password" name="senha" id="senha" value="<%= aluno.getSenha() %>">
             <i class="fa-solid fa-eye togglePassword" id="togglePassword"></i>
-          </div>
-          <label for="nova-senha">Nova senha:</label>
-          <div class="password-container">
-            <input type="password" name="nova-senha" id="senha2">
-            <i class="fa-solid fa-eye togglePassword" id="togglePassword2"></i>
-          </div>
-          <label for="confirma-nova-senha">Confirme a nova senha:</label>  
-          <div class="password-container">
-            <input type="password" name="confirma-nova-senha" id="senha3">
-            <i class="fa-solid fa-eye togglePassword" id="togglePassword3"></i>
           </div>
           <button type="submit">Salvar</button>
         </form>

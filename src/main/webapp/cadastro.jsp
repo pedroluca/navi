@@ -53,9 +53,9 @@
 					</span>
 				</div>
 				<div class="area-sexo">
-					<input id="feminino" type="radio" name="genero" value="F">
+					<input id="feminino" type="radio" name="genero" value="F" required>
 					<label for="feminino">Feminino</label> 
-					<input id="masculino" type="radio" name="genero" value="M">
+					<input id="masculino" type="radio" name="genero" value="M" required>
 					<label for="masculino">Masculino</label> 
 				</div>
 				<p>Já possui conta? <a href="index.jsp">Faça login</a></p>

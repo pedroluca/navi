@@ -24,6 +24,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/modal.css">
     <link rel="shortcut icon" type="image/x-icon" href="imagens/logo.png">
     <title>Navi | dashboard</title>
   </head>
@@ -34,10 +35,6 @@
       <span class="user-info">
         <h2 class="user-name"><%= aluno.getNome() %></h2>
         <h3 class="user-username"><%= aluno.getUsername() %></h3>
-      </span>
-      <span class="user-xp">
-        <p>EXP:</p>
-        <p>10000</p>
       </span>
       <div class="user-options">
         <button onclick="window.location.href='perfil.jsp'">Perfil</button>
@@ -72,10 +69,11 @@
         </div>
   
         <div id="questoes" class="sessao-oculta">
-          <h2>Gerenciar Questões <button>Cadastrar nova questão</button></h2>
+          <h2>Gerenciar Questões <button id="abrirModal" class="nova-questao-btn">Cadastrar nova questão</button></h2>
           <table>
             <tr>
               <th>ID</th>
+              <th>Assunto</th>
               <th>Enunciado</th>
               <th>Respostas</th>
             </tr>
@@ -83,6 +81,7 @@
             <% for (Questao questao : questoes){ %>
 		    	<tr>
 			     	<td><%= questao.getId() %></td>
+			     	<td><%= questao.getAssunto() %>
 			      	<td><%= questao.getEnunciado() %></td>
 			      	<td>
 			      		<ul><% for (Alternativa alternativa : questao.getAlternativas()){ %>
@@ -96,7 +95,69 @@
         </div>
       </div>
     </section>
+    
+    <div id="alert-modal" class="modal modal-center">
+      <div class="modal-content">
+      	<form action="insertQuestao" method="post" class="questao-form">
+      		<label for="enunciado">Enunciado</label>
+			<input type="text" name="enunciado" required>
+			<label for="assunto">Assunto</label>
+			<div class="area-sexo">
+				<input id="verbo" type="radio" name="assunto" value="Verbo" required>
+				<label for="verbo">Verbo</label> 
+				<input id="adverbio" type="radio" name="assunto" value="Adverbio" required>
+				<label for="adverbio">Advérbio</label> 
+				<input id="pronome" type="radio" name="assunto" value="Pronome" required>
+				<label for="pronome">Pronome</label> 
+				<input id="substantivo" type="radio" name="assunto" value="Substantivo" required>
+				<label for="substantivo">Substantivo</label> 
+				<input id="adjetivo" type="radio" name="assunto" value="Adjetivo" required>
+				<label for="adjetivo">Adjetivo</label> 
+			</div>
+			 <div class="alternativas">
+			   <input type="radio" id="alternativa1" name="respostaCorreta" value="1" required>
+			   <label for="alternativa1">Alternativa  1</label>
+			 </div>
+			   <input type="text" name="alternativas[]" required>
+			
+			 <div class="alternativas">
+			   <input type="radio" id="alternativa2" name="respostaCorreta" value="2" required>
+			   <label for="alternativa2">Alternativa  2</label>
+			 </div>
+			   <input type="text" name="alternativas[]" required>
+			 <div class="alternativas">
+			   <input type="radio" id="alternativa3" name="respostaCorreta" value="3" required>
+			   <label for="alternativa3">Alternativa  3</label>
+			 </div>
+			   <input type="text" name="alternativas[]" required>
+			
+			 <div class="alternativas">
+			   <input type="radio" id="alternativa4" name="respostaCorreta" value="4" required>
+			   <label for="alternativa4">Alternativa  4</label>
+			 </div>
+			   <input type="text" name="alternativas[]" required>
+			 <div class="questao-form-btns">
+			 	<button type="button" id="fecharModal" class="button-questao">Cancelar</button>
+        	 	<button type="submit" class="button-questao">Enviar</button>
+			 </div>
+      	</form>
+      </div>
+    </div>
+    
     <script>
+	    const alertModal = document.getElementById("alert-modal")
+	    const botaoAbrir = document.getElementById("abrirModal")
+	    const botaoFechar = document.getElementById("fecharModal")
+
+		botaoAbrir.addEventListener('click', (event) => {
+		  event.preventDefault();
+		  alertModal.style.display = "flex"
+		});
+	    
+	    botaoFechar.addEventListener('click', () => {
+    	  alertModal.style.display = "none"
+        })
+	    
       function mostrarAlunos() {
         document.getElementById("alunos").classList.remove("sessao-oculta");
         document.getElementById("questoes").classList.add("sessao-oculta");

@@ -10,19 +10,9 @@ public abstract class Usuario {
   private char sexo;
   private boolean is_adm;
   private String idFaseAtual;
+  private int xp_atual;
 
   public Usuario () {};
-  
-  public Usuario (String id, String username, String nome, String email, String senha, String telefone, char sexo, boolean is_adm) {
-	setId(id);
-    setUsername(username);
-    setNome(nome);
-    setEmail(email);
-    setSenha(senha);
-    setTelefone(telefone);
-    setSexo(sexo);
-    setIsAdm(is_adm);
-  }
   
   public void setId(String id) {
 	  this.id = id;
@@ -94,5 +84,13 @@ public abstract class Usuario {
 
   public String getIdFaseAtual() {
     return idFaseAtual;
+  }
+  
+  public void setXpAtual(int xp_atual) {
+	  this.xp_atual = xp_atual;
+  }
+  
+  public int getXpAtual() {
+	  return xp_atual;
   }
 }

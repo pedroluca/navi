@@ -14,7 +14,7 @@ public class UsuarioDAO {
 	public UsuarioDAO() {}
 	
 	public void inserirUsuario(Aluno aluno) {
-		String sql = "INSERT INTO usuario_trilha (nome, email, username, telefone, sexo, senha) VALUES (?,?,?,?,?,?)";
+		String sql = "INSERT INTO Usuario (nome, email, username, telefone, sexo, senha) VALUES (?,?,?,?,?,?);";
 		
 		try {
 			Connection con = dao.conectar();
@@ -35,7 +35,7 @@ public class UsuarioDAO {
 	}
 	
 	public Aluno validarUsuario(Aluno aluno) {
-	    String sql = "SELECT * FROM usuario_trilha WHERE email=? AND senha=?";
+	    String sql = "SELECT * FROM Usuario WHERE email = ? AND senha = ?;";
 	    
 	    try {
 	        Connection con = dao.conectar();
@@ -58,6 +58,8 @@ public class UsuarioDAO {
 	            foundAluno.setNomeResponsavel(rs.getString("nome_do_responsavel"));
 	            foundAluno.setId(rs.getString("id"));
 	            foundAluno.setIsAdm(rs.getBoolean("is_adm"));
+	            foundAluno.setIdFaseAtual(rs.getString("id_fase_atual"));
+	            foundAluno.setXpAtual(rs.getInt("xp_atual"));
 
 	            return foundAluno;
 	        }
@@ -69,7 +71,7 @@ public class UsuarioDAO {
 	}
 	
 	public boolean validarCadastro(Aluno aluno) {
-		String sql = "SELECT * FROM usuario_trilha WHERE username=? OR email=?";
+		String sql = "SELECT * FROM Usuario WHERE username=? OR email=?;";
 		try {
 			Connection con = dao.conectar();
 			PreparedStatement pstm = con.prepareStatement(sql);
@@ -86,7 +88,7 @@ public class UsuarioDAO {
 	}
 	
 	public boolean updateUsuario(Aluno aluno) {
-		String sql = "UPDATE usuario_trilha SET nome = ?, email = ?, username = ?, telefone = ?, sexo = ?, senha = ? WHERE id = ?";
+		String sql = "UPDATE Usuario SET nome = ?, email = ?, username = ?, telefone = ?, sexo = ?, senha = ? WHERE id = ?";
 		try {
 			Connection con = dao.conectar();
 			PreparedStatement pstm = con.prepareStatement(sql);
@@ -98,9 +100,9 @@ public class UsuarioDAO {
 			pstm.setString(5, String.valueOf(aluno.getSexo()));
 			pstm.setString(6, aluno.getSenha());
 			pstm.setString(7, aluno.getId());
-			pstm.execute();
+			int rowsAffected = pstm.executeUpdate();
 			con.close();
-			return true;
+			return rowsAffected > 0;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -108,7 +110,7 @@ public class UsuarioDAO {
 	}
 	
 	public String buscarId(Aluno aluno) {
-	    String sql = "SELECT id FROM usuario_trilha WHERE email = ?";
+	    String sql = "SELECT id FROM Usuario WHERE email = ?";
 	    try {
 	        Connection con = dao.conectar();
 	        PreparedStatement pstm = con.prepareStatement(sql);
@@ -130,7 +132,7 @@ public class UsuarioDAO {
 	}
 	
 	public ArrayList<Aluno> getAllAlunos() {
-		String sql = "SELECT id, nome, email, telefone, sexo FROM usuario_trilha";
+		String sql = "SELECT id, nome, email, telefone, sexo FROM Usuario";
 
 		try {
 			Connection con = dao.conectar();
@@ -159,4 +161,70 @@ public class UsuarioDAO {
 
         return null;
     }
+	
+	public boolean avancarFase(Aluno aluno) {
+		String sql = "UPDATE Usuario SET id_fase_atual = ?, xp_atual = 0 WHERE id = ?";
+		int proximaFase = Integer.parseInt(aluno.getIdFaseAtual());
+		proximaFase++;
+		String novaFase = Integer.toString(proximaFase, 10);
+		
+		try {
+			Connection con = dao.conectar();
+			PreparedStatement statement = con.prepareStatement(sql);
+			aluno.setIdFaseAtual(novaFase);
+			statement.setString(1, aluno.getIdFaseAtual());
+			statement.setString(2, aluno.getId());
+			int rowsAffected = statement.executeUpdate();
+			
+			return rowsAffected > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean verificarPassarDeFase(String id) {
+		String sql = "SELECT f.xp_necessaria, u.xp_atual FROM Fase AS f JOIN Usuario AS u ON u.id_fase_atual = f.id WHERE u.id = ?";
+		
+		try {
+			Connection con = dao.conectar();
+			PreparedStatement statement = con.prepareStatement(sql);
+			statement.setString(1, id);
+			ResultSet rs = statement.executeQuery();
+			
+			if (rs.next()) {
+				if (rs.getInt("xp_atual") >= rs.getInt("xp_necessaria")) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean somarXp(String id, int xp) {
+		String sqlS = "SELECT xp_atual FROM Usuario WHERE id = ?";
+		String sql = "UPDATE Usuario SET xp_atual = ? WHERE id = ?";
+		
+		try {
+			Connection con = dao.conectar();
+			PreparedStatement statementS = con.prepareStatement(sqlS);
+			PreparedStatement statement = con.prepareStatement(sql);
+			
+			statementS.setString(1, id);
+			ResultSet rs = statementS.executeQuery();
+			if (rs.next()) xp += rs.getInt("xp_atual");
+			statement.setInt(1, xp);
+			statement.setString(2, id);
+			
+			int rowsAffected = statement.executeUpdate();
+			con.close();
+			
+	        return rowsAffected > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
