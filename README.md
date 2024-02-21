@@ -19,10 +19,8 @@
 * [Sobre o Projeto](#sobre-o-projeto)
 * [Construido Com](#construido-com)
 * [Iniciando](#iniciando)
-  * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
+  * [Pre-requisitos](#pre-requisitos)
+  * [Instalando](#instalando)
 * [Autores](#autores)
 * [Bonus](#bonus)
 
@@ -63,7 +61,7 @@ O projeto foi desenvolvido utilizando algumas versões específicas de algumas f
 * Versão do MySQL e MySQL Workbench foi a 8.20
 * Versão do JDBC foi a 8.20
 
-### Prerequisites
+### Pre-requisitos
 
 Alguns requisitos para o funcionamento do sistema são:
 
@@ -79,40 +77,16 @@ baixe no [site](https://tomcat.apache.org/download-90.cgi)
 
 baixe no [site](https://dev.mysql.com/downloads/installer/)
 
-* criação do banco de dados específico
 
-o arquivo [scriptSQL.txt](src/main/database/scriptSQL.txt) contém o script SQL necessário para o funcionamento do sistema
+### Instalando
 
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-
-2. Clone the repo
-
-https://dev.mysql.com/downloads/connector/j/
+1. Copie o [script](src/main/database/scriptSQL.txt) em .sql
 
 
-3. Install NPM packages
+2. Cole para criar o banco de dados e fazer as inserções básicas necessárias, usando a ferramenta de SGBD MySQL Workbench
 
-sh
-npm install
+https://dev.mysql.com/downloads/workbench/
 
-
-4. Enter your API in config.js
-
-JS
-const API_KEY = 'ENTER YOUR API';
-
-
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-For more examples, please refer to the [Documentation](https://example.com)
-
-## Roadmap
-
-See the [open issues](https://github.com/pedroluca/navi/issues) for a list of proposed features (and known issues).
 
 ## Autores
 
